@@ -11,7 +11,10 @@
         "format": "prettier **/*.{js,jsx,ts,tsx,json,css} --write"
     },
     "dependencies": {
+        "@mdi/js": "^7.4.47",
+        "@mdi/react": "^1.6.1",
         "@tauri-apps/api": "^1",
+        "primereact": "^10.6.6",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -20,6 +23,8 @@
         "@types/react": "^18.2.15",
         "@types/react-dom": "^18.2.7",
         "@vitejs/plugin-react": "^4.2.1",
+        "autoprefixer": "^10.4.19",
+        "postcss-nesting": "^12.1.5",
         "prettier": "^3.3.2",
         "typescript": "^5.0.2",
         "vite": "^5.0.0"
