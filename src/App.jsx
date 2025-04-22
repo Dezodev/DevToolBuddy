@@ -1,9 +1,25 @@
 import '@mantine/core/styles.css'
 import React, { Children } from 'react'
 
-import { AppShell, Burger, Group, MantineProvider, NavLink, Skeleton } from '@mantine/core'
+import {
+    ActionIcon,
+    AppShell,
+    Burger,
+    Button,
+    Flex,
+    Group,
+    MantineProvider,
+    Menu,
+    NavLink,
+    Skeleton,
+    useMantineColorScheme,
+} from '@mantine/core'
 import Icon from '@mdi/react'
 import { mdiViewDashboard, mdiCalendar, mdiFormatLetterCase } from '@mdi/js'
+import { mdiBrightness6 } from '@mdi/js'
+import { mdiWeatherNight } from '@mdi/js'
+import { mdiWeatherSunny } from '@mdi/js'
+import { mdiRestore } from '@mdi/js'
 
 const menuItems = [
     {
@@ -50,6 +66,8 @@ const MenuNavLink = ({ item, currentKey, ...props }) => {
 }
 
 const App = () => {
+    const { setColorScheme, clearColorScheme } = useMantineColorScheme()
+
     /* State
      * ================================= */
     const [opened, setOpened] = React.useState(false)
@@ -71,8 +89,47 @@ const App = () => {
         >
             <AppShell.Header>
                 <Group h="100%" px="md">
-                    <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                    <p style={{ marginBottom: 0 }}>DevToolBuddy</p>
+                    <Flex justify="space-between" align="center" h="100%" w="100%" gap="xs">
+                        <Group>
+                            <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+                            <p style={{ marginBottom: 0 }}>DevToolBuddy 2</p>
+                        </Group>
+                        <Group>
+                            <Menu shadow="md" width={180}>
+                                <Menu.Target>
+                                    <ActionIcon variant="default" aria-label="Toggle dark mode">
+                                        <Icon path={mdiBrightness6} size={0.8} />
+                                    </ActionIcon>
+                                </Menu.Target>
+                                <Menu.Dropdown>
+                                    <Menu.Item
+                                        onClick={() => setColorScheme('light')}
+                                        leftSection={<Icon path={mdiWeatherSunny} size={0.8} />}
+                                    >
+                                        Clair
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        onClick={() => setColorScheme('dark')}
+                                        leftSection={<Icon path={mdiWeatherNight} size={0.8} />}
+                                    >
+                                        Sombre
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        onClick={() => setColorScheme('auto')}
+                                        leftSection={<Icon path={mdiBrightness6} size={0.8} />}
+                                    >
+                                        Auto
+                                    </Menu.Item>
+                                    <Menu.Item
+                                        onClick={clearColorScheme}
+                                        leftSection={<Icon path={mdiRestore} size={0.8} />}
+                                    >
+                                        Réinitialiser
+                                    </Menu.Item>
+                                </Menu.Dropdown>
+                            </Menu>
+                        </Group>
+                    </Flex>
                 </Group>
             </AppShell.Header>
             <AppShell.Navbar p="md">
