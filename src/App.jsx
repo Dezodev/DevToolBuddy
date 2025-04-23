@@ -20,6 +20,14 @@ import { mdiBrightness6 } from '@mdi/js'
 import { mdiWeatherNight } from '@mdi/js'
 import { mdiWeatherSunny } from '@mdi/js'
 import { mdiRestore } from '@mdi/js'
+import { Route, Routes } from 'react-router'
+import Home from './pages/Home'
+import DateIndex from './pages/Date/Index'
+import DateTimestamp from './pages/Date/Timestamp'
+import DateOperations from './pages/Date/Operations'
+import TextIndex from './pages/Text/Index'
+import TextCase from './pages/Text/Case'
+import TextBase64 from './pages/Text/Base64'
 
 const menuItems = [
     {
@@ -92,7 +100,7 @@ const App = () => {
                     <Flex justify="space-between" align="center" h="100%" w="100%" gap="xs">
                         <Group>
                             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                            <p style={{ marginBottom: 0 }}>DevToolBuddy 2</p>
+                            <p style={{ marginBottom: 0 }}>DevToolBuddy</p>
                         </Group>
                         <Group>
                             <Menu shadow="md" width={180}>
@@ -132,12 +140,22 @@ const App = () => {
                     </Flex>
                 </Group>
             </AppShell.Header>
-            <AppShell.Navbar p="md">
+            <AppShell.Navbar py="md">
                 {menuItems.map((item) => (
                     <MenuNavLink key={item.key} item={item} currentKey={currentKey} />
                 ))}
             </AppShell.Navbar>
-            <AppShell.Main>Main</AppShell.Main>
+            <AppShell.Main>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/date" element={<DateIndex />} />
+                    <Route path="/date/timestamp" element={<DateTimestamp />} />
+                    <Route path="/date/operations" element={<DateOperations />} />
+                    <Route path="/text" element={<TextIndex />} />
+                    <Route path="/text/case" element={<TextCase />} />
+                    <Route path="/text/base64" element={<TextBase64 />} />
+                </Routes>
+            </AppShell.Main>
         </AppShell>
     )
 }
