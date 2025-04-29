@@ -1,12 +1,16 @@
 import React from 'react'
-import PageHeader from '../components/Page/Header'
 
-const Home = () => {
+import PageHeader from '../../components/Page/Header'
+
+const DateCalculate = () => {
     return (
         <div>
             <PageHeader
-                title="Tous les outils"
-                breadcrumb_items={[{ title: 'Tous les outils', href: null }]}
+                title="Calcul de date"
+                breadcrumb_items={[
+                    { title: 'Date', href: '/date' },
+                    { title: 'Calcul', href: null },
+                ]}
             />
 
             <p>
@@ -18,4 +22,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default DateCalculate

@@ -1,85 +1,86 @@
-import '@mantine/core/styles.css'
-import React, { Children } from 'react'
-
 import {
     ActionIcon,
     AppShell,
     Burger,
-    Button,
     Flex,
     Group,
-    MantineProvider,
     Menu,
-    NavLink,
-    Skeleton,
     useMantineColorScheme,
 } from '@mantine/core'
-import Icon from '@mdi/react'
-import { mdiViewDashboard, mdiCalendar, mdiFormatLetterCase } from '@mdi/js'
+import { mdiCalendar, mdiFormatLetterCase, mdiViewDashboard } from '@mdi/js'
 import { mdiBrightness6 } from '@mdi/js'
 import { mdiWeatherNight } from '@mdi/js'
 import { mdiWeatherSunny } from '@mdi/js'
 import { mdiRestore } from '@mdi/js'
-import { Route, Routes } from 'react-router'
-import Home from './pages/Home'
+import Icon from '@mdi/react'
+import React from 'react'
+import { Route, Routes, useLocation } from 'react-router'
+
+import MenuNavLink from './components/Menu/MenuNavLink'
+import DateCalculate from './pages/Date/Calculate'
 import DateIndex from './pages/Date/Index'
 import DateTimestamp from './pages/Date/Timestamp'
-import DateOperations from './pages/Date/Operations'
-import TextIndex from './pages/Text/Index'
-import TextCase from './pages/Text/Case'
+import Home from './pages/Home'
 import TextBase64 from './pages/Text/Base64'
+import TextCase from './pages/Text/Case'
 
-const menuItems = [
-    {
-        label: 'Tous les outils',
-        key: 'all-tools',
-        href: '/',
-        icon: <Icon path={mdiViewDashboard} size={1} />,
-    },
-    {
-        label: 'Date',
-        href: '/date',
-        key: 'date',
-        icon: <Icon path={mdiCalendar} size={1} />,
-        childrens: [
-            { label: 'Timestamp', key: 'date-timestamp', href: '/date/timestamp' },
-            { label: 'Opérations', key: 'date-operations', href: '/date/operations' },
-        ],
-    },
-    {
-        label: 'Texte',
-        href: '/text',
-        key: 'text',
-        icon: <Icon path={mdiFormatLetterCase} size={1} />,
-        childrens: [
-            { label: 'Casse', key: 'text-case', href: '/text/case' },
-            { label: 'Base64', key: 'text-base64', href: '/text/base64' },
-        ],
-    },
-]
-
-const MenuNavLink = ({ item, currentKey, ...props }) => {
-    return (
-        <NavLink
-            {...item}
-            active={item.key === currentKey}
-            component="a"
-            leftSection={item.icon ?? null}
-        >
-            {item.childrens?.map((child) => (
-                <MenuNavLink key={child.key} item={child} currentKey={currentKey} {...props} />
-            ))}
-        </NavLink>
-    )
-}
+import '@mantine/core/styles.css'
+import TextIndex from './pages/Text/Index'
 
 const App = () => {
+    /* Hooks
+     * ================================= */
+
     const { setColorScheme, clearColorScheme } = useMantineColorScheme()
+    const location = useLocation()
 
     /* State
      * ================================= */
+
     const [opened, setOpened] = React.useState(false)
-    const [currentKey, setCurrentKey] = React.useState('all-tools')
+
+    const menuItems = React.useMemo(() => {
+        let items = [
+            {
+                label: 'Tous les outils',
+                key: 'all-tools',
+                link: '/',
+                icon: <Icon path={mdiViewDashboard} size={1} />,
+            },
+            {
+                label: 'Date',
+                key: 'date',
+                icon: <Icon path={mdiCalendar} size={1} />,
+                childrens: [
+                    { label: 'Timestamp', key: 'date-timestamp', link: '/date/timestamp' },
+                    { label: 'Calcul', key: 'date-calculate', link: '/date/calculate' },
+                ],
+            },
+            {
+                label: 'Texte',
+                key: 'text',
+                icon: <Icon path={mdiFormatLetterCase} size={1} />,
+                childrens: [
+                    { label: 'Casse', key: 'text-case', link: '/text/case' },
+                    { label: 'Base64', key: 'text-base64', link: '/text/base64' },
+                ],
+            },
+        ]
+
+        const markActive = (items = []) => {
+            return items.map((item) => {
+                item.active = item.link === location.pathname
+
+                if (item.childrens?.length > 0) {
+                    item.childrens = markActive(item.childrens)
+                }
+
+                return item
+            })
+        }
+
+        return markActive(items)
+    }, [location.pathname])
 
     /* Methods
      * ================================= */
@@ -142,7 +143,7 @@ const App = () => {
             </AppShell.Header>
             <AppShell.Navbar py="md">
                 {menuItems.map((item) => (
-                    <MenuNavLink key={item.key} item={item} currentKey={currentKey} />
+                    <MenuNavLink key={item.key} item={item} />
                 ))}
             </AppShell.Navbar>
             <AppShell.Main>
@@ -150,7 +151,7 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/date" element={<DateIndex />} />
                     <Route path="/date/timestamp" element={<DateTimestamp />} />
-                    <Route path="/date/operations" element={<DateOperations />} />
+                    <Route path="/date/calculate" element={<DateCalculate />} />
                     <Route path="/text" element={<TextIndex />} />
                     <Route path="/text/case" element={<TextCase />} />
                     <Route path="/text/base64" element={<TextBase64 />} />

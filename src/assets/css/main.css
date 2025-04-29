@@ -7,3 +7,22 @@ body {
 p {
     margin: 0 0 16px;
 }
+
+/* Header */
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header-breadcrumb {
+    margin-bottom: 5px;
+
+    .breadcrumb-no-link {
+        color: var(--mantine-color-text);
+        cursor: default;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
