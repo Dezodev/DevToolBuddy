@@ -1,5 +1,7 @@
 import React from 'react'
+
 import PageHeader from '../components/Page/Header'
+import SubPageList from '../components/Page/SubPageList'
 
 const Home = () => {
     return (
@@ -9,11 +11,23 @@ const Home = () => {
                 breadcrumb_items={[{ title: 'Tous les outils', href: null }]}
             />
 
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum tenetur ab,
-                nulla quas assumenda iure? Amet fuga ut sunt, quos, numquam commodi aliquam et
-                maiores voluptatum quas eveniet ratione in.
-            </p>
+            <h2>Date</h2>
+
+            <SubPageList
+                pages={[
+                    { label: 'Timestamp', key: 'date-timestamp', link: '/date/timestamp' },
+                    { label: 'Calcul', key: 'date-calculate', link: '/date/calculate' },
+                ]}
+            />
+
+            <h2>Texte</h2>
+
+            <SubPageList
+                pages={[
+                    { label: 'Casse', key: 'text-case', link: '/text/case' },
+                    { label: 'Base64', key: 'text-base64', link: '/text/base64' },
+                ]}
+            />
         </div>
     )
 }
