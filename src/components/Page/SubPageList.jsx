@@ -27,6 +27,9 @@ const SubPageList = (props) => {
         navigate(page.link)
     }
 
+    /* Render
+     * ================================= */
+
     return (
         <Grid>
             {pages.map((page) => (

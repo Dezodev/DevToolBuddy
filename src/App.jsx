@@ -23,8 +23,6 @@ import DateTimestamp from './pages/Date/Timestamp'
 import Home from './pages/Home'
 import TextBase64 from './pages/Text/Base64'
 import TextCase from './pages/Text/Case'
-
-import '@mantine/core/styles.css'
 import TextIndex from './pages/Text/Index'
 
 const App = () => {
