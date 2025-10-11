@@ -1,24 +1,54 @@
-import { AppShell, Burger, Button, Group, Text, Title } from '@mantine/core'
+import {
+    ActionIcon,
+    AppShell,
+    Burger,
+    Button,
+    Group,
+    Text,
+    Title,
+    useComputedColorScheme,
+    useMantineColorScheme,
+} from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { MaterialIcon } from './components/MaterialIcon'
 import './App.css'
 
 function App() {
     const [opened, { toggle }] = useDisclosure()
+    const { setColorScheme } = useMantineColorScheme()
+    const computedColorScheme = useComputedColorScheme('light')
+
+    const toggleColorScheme = () => {
+        setColorScheme(computedColorScheme === 'dark' ? 'light' : 'dark')
+    }
 
     return (
         <AppShell
             header={{ height: 60 }}
             navbar={{
-                width: 300,
+                width: 200,
                 breakpoint: 'sm',
                 collapsed: { mobile: !opened },
             }}
             padding="md"
         >
             <AppShell.Header>
-                <Group h="100%" px="md">
-                    <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                    <Title order={3}>DevToolBuddy</Title>
+                <Group h="100%" px="md" justify="space-between">
+                    <Group>
+                        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+                        <Title order={3}>DevToolBuddy</Title>
+                    </Group>
+                    <ActionIcon
+                        variant="default"
+                        size="lg"
+                        onClick={toggleColorScheme}
+                        aria-label="Toggle color scheme"
+                    >
+                        <MaterialIcon
+                            icon={computedColorScheme === 'dark' ? 'light_mode' : 'dark_mode'}
+                            size={20}
+                        />
+                    </ActionIcon>
                 </Group>
             </AppShell.Header>
 

@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client'
 import { MantineProvider } from '@mantine/core'
 import App from './App'
 import '@mantine/core/styles.css'
+import 'material-symbols/outlined.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <MantineProvider>
+        <MantineProvider defaultColorScheme="auto">
             <App />
         </MantineProvider>
     </React.StrictMode>
