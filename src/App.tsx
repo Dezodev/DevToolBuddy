@@ -3,9 +3,9 @@ import { useDisclosure } from '@mantine/hooks'
 import { Routes, Route } from 'react-router-dom'
 import { AppHeader, AppNavbar } from './components/layout'
 import { Home } from './pages/Home'
-import { TimestampConverter } from './pages/TimestampConverter'
-import { TextCaseConverter } from './pages/TextCaseConverter'
-import { LoremIpsumGenerator } from './pages/LoremIpsumGenerator'
+import { TimestampConverter } from './pages/date/TimestampConverter'
+import { TextCaseConverter } from './pages/text/TextCaseConverter'
+import { LoremIpsumGenerator } from './pages/text/LoremIpsumGenerator'
 import './App.css'
 
 function App() {
@@ -17,15 +17,15 @@ function App() {
             element: <Home />,
         },
         {
-            path: '/timestamp-converter',
+            path: '/date/timestamp-converter',
             element: <TimestampConverter />,
         },
         {
-            path: '/text-case-converter',
+            path: '/text/case-converter',
             element: <TextCaseConverter />,
         },
         {
-            path: '/lorem-ipsum-generator',
+            path: '/text/lorem-ipsum-generator',
             element: <LoremIpsumGenerator />,
         },
     ]
@@ -37,12 +37,12 @@ function App() {
             items: [
                 {
                     label: 'Conversion de Casse',
-                    path: '/text-case-converter',
+                    path: '/text/case-converter',
                     icon: 'format_size',
                 },
                 {
                     label: 'Générateur Lorem Ipsum',
-                    path: '/lorem-ipsum-generator',
+                    path: '/text/lorem-ipsum-generator',
                     icon: 'article',
                 },
             ],
@@ -53,7 +53,7 @@ function App() {
             items: [
                 {
                     label: 'Conversion Timestamp',
-                    path: '/timestamp-converter',
+                    path: '/date/timestamp-converter',
                     icon: 'schedule',
                 },
             ],
