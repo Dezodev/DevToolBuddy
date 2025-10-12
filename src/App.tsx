@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { AppHeader, AppNavbar } from './components/layout'
 import { Home } from './pages/Home'
 import { TimestampConverter } from './pages/TimestampConverter'
+import { TextCaseConverter } from './pages/TextCaseConverter'
 import './App.css'
 
 function App() {
@@ -18,9 +19,24 @@ function App() {
             path: '/timestamp-converter',
             element: <TimestampConverter />,
         },
+        {
+            path: '/text-case-converter',
+            element: <TextCaseConverter />,
+        },
     ]
 
     const menuItems = [
+        {
+            label: 'Outils de Texte',
+            icon: 'text_fields',
+            items: [
+                {
+                    label: 'Conversion de Casse',
+                    path: '/text-case-converter',
+                    icon: 'format_size',
+                },
+            ],
+        },
         {
             label: 'Outils de Date',
             icon: 'calendar_month',
