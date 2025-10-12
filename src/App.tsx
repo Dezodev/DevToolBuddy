@@ -5,6 +5,7 @@ import { AppHeader, AppNavbar } from './components/layout'
 import { Home } from './pages/Home'
 import { TimestampConverter } from './pages/TimestampConverter'
 import { TextCaseConverter } from './pages/TextCaseConverter'
+import { LoremIpsumGenerator } from './pages/LoremIpsumGenerator'
 import './App.css'
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
             path: '/text-case-converter',
             element: <TextCaseConverter />,
         },
+        {
+            path: '/lorem-ipsum-generator',
+            element: <LoremIpsumGenerator />,
+        },
     ]
 
     const menuItems = [
@@ -34,6 +39,11 @@ function App() {
                     label: 'Conversion de Casse',
                     path: '/text-case-converter',
                     icon: 'format_size',
+                },
+                {
+                    label: 'Générateur Lorem Ipsum',
+                    path: '/lorem-ipsum-generator',
+                    icon: 'article',
                 },
             ],
         },

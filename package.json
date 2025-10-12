@@ -19,6 +19,7 @@
         "@tauri-apps/plugin-opener": "^2",
         "dayjs": "^1.11.18",
         "lodash": "^4.17.21",
+        "lorem-ipsum": "^2.0.8",
         "material-symbols": "^0.36.3",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
